@@ -8,11 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class AutoCompleteSuffixView;
+
+@protocol AutoCompleteSuffixViewDelegate <NSObject>
+
+- (void)autoCompleteSuffixView:(AutoCompleteSuffixView *)autoCompleteSuffixView selectText:(NSString *)selectText;
+
+@end
+
+
 @interface AutoCompleteSuffixView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) UITextField *bindedTextField;
 @property (nonatomic, strong) NSArray *suffixs;
 @property (nonatomic) BOOL roundedBorder; //default YES
+@property (nonatomic, assign) id<AutoCompleteSuffixViewDelegate> suffixViewDelegate;
 /* 
  when maxDisplayHeight is set to positive value, if AutoCompleteSuffixView's 
  frame height is greater than maxDisplayHeight, use maxDisplayHeight and 

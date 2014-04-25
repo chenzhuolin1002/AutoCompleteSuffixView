@@ -99,7 +99,12 @@
 {
     self.bindedTextField.text = self.suggestions[indexPath.row];
     self.hidden = YES;
-    [self.bindedTextField resignFirstResponder];
+//    [self.bindedTextField resignFirstResponder];
+	
+	if ([self.suffixViewDelegate respondsToSelector:@selector(autoCompleteSuffixView:selectText:)]) {
+		[self.suffixViewDelegate autoCompleteSuffixView:self selectText:self.bindedTextField.text];
+	}
+	
 }
 
 #pragma mark - Auto Suffix Complete Suggestion
